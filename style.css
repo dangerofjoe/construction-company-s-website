@@ -1,9 +1,7 @@
 
-/* style.css - Основные стили строительной компании */
-
 :root {
-    --primary: #1e3a8a; /* Темно-синий, ассоциируется с надежностью */
-    --secondary: #f59e0b; /* Янтарный - акцентный цвет */
+    --primary: #1e3a8a;
+    --secondary: #f59e0b;
     --light: #f8fafc;
     --dark: #0f172a;
     --gray: #64748b;
@@ -27,7 +25,6 @@ body {
     min-height: 100vh;
 }
 
-/* Типографика */
 h1, h2, h3 {
     font-weight: 700;
     line-height: 1.2;
@@ -50,7 +47,6 @@ a {
     padding: 0 20px;
 }
 
-/* Шапка */
 .site-header {
     background: white;
     box-shadow: var(--box-shadow);
@@ -77,7 +73,6 @@ a {
     color: var(--secondary);
 }
 
-/* Если логотип — изображение */
 .logo img {
     display: block;
     height: 80px;
@@ -110,13 +105,11 @@ a {
     font-size: 1.2rem;
 }
 
-/* Основной контент */
 main {
     flex: 1;
     padding: 3rem 0;
 }
 
-/* Кнопки */
 .btn {
     display: inline-block;
     padding: 0.8rem 1.8rem;
@@ -150,7 +143,6 @@ main {
     color: white;
 }
 
-/* Карточки (общие) */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -181,7 +173,6 @@ main {
     padding: 1.5rem;
 }
 
-/* Специфические стили для карточек портфолио (оверлей) */
 .portfolio-card {
     position: relative;
     overflow: hidden;
@@ -235,7 +226,6 @@ main {
     opacity: 0.9;
 }
 
-/* Футер */
 .site-footer {
     background: var(--primary);
     color: white;
@@ -249,7 +239,6 @@ main {
     align-items: center;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
     h2 { font-size: 1.6rem; }
@@ -286,7 +275,6 @@ main {
     }
 }
 
-/* Стили для hero и about-content (оставлены для совместимости) */
 .hero {
     background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
     color: white;
