@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты ДМ-СТРОЙ — строительство в Великом Новгороде</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpg" href="img/logo.jpg">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <img src="img/logo.jpg" alt="ДМ-СТРОЙ — строительная компания Великий Новгород" style="height: 80px; width: auto;">
+            </a>
+            <button class="menu-toggle" aria-label="Меню">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="portfolio.html">Портфолио</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Свяжитесь с нами</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem;">
+                <div>
+                    <h3>Наш офис в Великом Новгороде</h3>
+                    <p>г. Великий Новгород, ул. Большая Санкт-Петербургская, д. 39, офис 210<br>
+                    (Бизнес-центр «Русь»)</p>
+                    
+                    <h3 style="margin-top: 2rem;">Телефон</h3>
+                    <p><a href="tel:+79602011810"> +7 960 201-18-10</a></p>
+                    
+                    <h3>Email</h3>
+                    <p><a href="mailto:marik1302@mail.ru">marik1302@mail.ru</a></p>
+                    
+                    <h3 style="margin-top: 2rem;">Режим работы</h3>
+                    <p>Пн-Пт: 9:00 - 19:00<br>
+                    Сб: 10:00 - 16:00<br>
+                    Вс: выходной</p>
+                    
+                    <h3>Реквизиты</h3>
+                    <p>ООО «ДМ-СТРОЙ»<br>
+                    ИНН 5321163743 / КПП 532101001<br>
+                    ОГРН 1135321004961<br>
+                    г. Великий Новгород</p>
+                </div>
+                
+                <div>
+                    <h3>Напишите нам</h3>
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mzdyaoyb" method="POST">
+                        <input type="text" name="name" placeholder="Ваше имя *" required>
+                        <input type="tel" name="phone" placeholder="Телефон *" required>
+                        <input type="email" name="email" placeholder="Email">
+                        <textarea name="message" rows="4" placeholder="Сообщение (опишите ваш проект или вопрос)"></textarea>
+                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                        <p style="font-size: 0.9rem; color: var(--gray);">* Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+                    </form>
+                    <div id="formMessage" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+
+            <!-- Блок с Яндекс.Картой -->
+            <div style="margin-top: 4rem;">
+                <h2>Как нас найти</h2>
+                <div style="position: relative; overflow: hidden; border-radius: var(--border-radius); box-shadow: var(--box-shadow); max-width: 100%;">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A97998d3c608c92047d03e27f77dd26e197f6d219ab727cd678650426062053b9&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 ООО «ДМ-СТРОЙ». Все права защищены.</p>
+            <p>📞 +7 960 201-18-10 | ✉️ marik1302@mail.ru</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        (function() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const msgDiv = document.getElementById('formMessage');
+                msgDiv.innerHTML = '<p style="color: #2563eb;">Отправка данных...</p>';
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        msgDiv.innerHTML = '<p style="color: green;">✅ Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.</p>';
+                        form.reset();
+                    } else {
+                        const errorData = await response.json();
+                        console.error('Formspree error:', errorData);
+                        msgDiv.innerHTML = '<p style="color: red;">❌ Ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.</p>';
+                    }
+                } catch (error) {
+                    console.error('Network error:', error);
+                    msgDiv.innerHTML = '<p style="color: red;">❌ Сетевая ошибка. Проверьте подключение к интернету.</p>';
+                }
+
+                setTimeout(() => {
+                    if (msgDiv) msgDiv.innerHTML = '';
+                }, 5000);
+            });
+        })();
+    </script>
+</body>
+</html>
